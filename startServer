@@ -1,0 +1,2 @@
+sudo podman start $1
+sudo podman exec $1 rcon-cli start

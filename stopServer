@@ -1,0 +1,2 @@
+#shortcut to stop server
+sudo podman exec $1 rcon-cli stop

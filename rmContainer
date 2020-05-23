@@ -1,0 +1,5 @@
+#this is to remove the containers because typing it out is getting annoying
+sudo podman stop $1
+sudo podman rm $1
+sudo userdel -r $2
+sudo groupdel $2
