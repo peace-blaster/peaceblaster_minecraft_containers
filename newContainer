@@ -1,6 +1,6 @@
 # Julian DeVille
 # this is just alias-able shorthand for making these Minecraft containers because it's a pain in the ass otherwise
-# USAGE: ./newContainer <Minecraft port> <containername> <username> <memory> <bungeeName>
+# USAGE: ./newContainer <Minecraft port> <containername> <username> <memory> <bungeeName> <PAPER/VANILLA> <paperbuild>
 sudo useradd -U $3
 echo "Added user $3"
 sudo mkdir /home/$3/data #this should be done with skel, but I'm doing other stuff with this server
@@ -15,7 +15,7 @@ USR_UID=$(id -u $3) # assign id of `$3` group to MEDIA_GID
 USR_GID=$(id -g $3) # change ownership in podman namespace
 #sudo podman unshare chown $MEDIA_UID:$MEDIA_GID /home/$3/data
 #make and run the container:
-sudo podman run -d -it -v /home/$3/data:/data:z -e TYPE=PAPER -e FORCE_REDOWNLOAD=true -e MAX_RAM=$4G -e UID=$USR_UID -e GID=$USR_GID -p $1:25565 -e EULA=true -e USE_AIKAR_FLAGS=true -e SERVER_NAME=$5 --name $2 -m=$4g --cpus=1 itzg/minecraft-server
+sudo podman run -d -it -v /home/$3/data:/data:z -e TYPE=$6 -e paperbuild=$7 -e FORCE_REDOWNLOAD=true -e MAX_RAM=$4G -e UID=$USR_UID -e GID=$USR_GID -p $1:25565 -e EULA=true -e USE_AIKAR_FLAGS=true -e SERVER_NAME=$5 --name $2 -m=$4g --cpus=1 itzg/minecraft-server
 #now run it
 sudo podman start $2
 #output
