@@ -1,6 +1,6 @@
 # Julian DeVille
 # this is just alias-able shorthand for making these Minecraft containers because it's a pain in the ass otherwise
-# USAGE: ./updateContainer <Minecraft port> <containername> <username> <memory> <bungeeName> <PAPER/VANILLA> <paperVersion>
+# USAGE: ./updateContainer <Minecraft port> <containername> <username> <memory> <bungeeName> <PAPER/VANILLA> <paperVersion> <minecraftVersion>
 sudo podman stop $2
 sudo podman rm $2
 #UID nonsense
