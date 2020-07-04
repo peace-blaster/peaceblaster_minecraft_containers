@@ -1,0 +1,20 @@
+
+# Julian DeVille
+# this is just alias-able shorthand for making these Minecraft containers because it's a pain in the ass otherwise
+# USAGE: ./newContainer <Minecraft port> <containername> <username> <memory> <bungeeName> <PAPER/VANILLA> <paperbuild> <minecraftVersion>
+sudo useradd -U $1
+echo "Added user $1"
+sudo mkdir /home/$1/data #this should be done with skel, but I'm doing other stuff with this server
+echo "created folder /home/$1/data/"
+sudo chown -R $1:$1 /home/$1/data
+sudo chcon -Rt svirt_sandbox_file_t /home/$1/data #fixes the permission issue
+echo "permissions should be fixed now"
+#in the interest of security, this needs to be done manually during script execution
+sudo passwd $1
+#UID nonsense
+USR_UID=$(id -u $1) # assign id of `$3` group to MEDIA_GID
+USR_GID=$(id -g $1) # change ownership in podman namespace
+#make and run the container:
+sudo podman run -d -it -u $USR_UID -v /home/$1/data:/server:z -p 25565:25577 -e TYPE=WATERFALL --name WATERFALL itzg/bungeecord
+#now run it
+sudo podman start WATERFALL
