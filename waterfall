@@ -1,7 +1,7 @@
 
 # Julian DeVille
 # this is just alias-able shorthand for making these Minecraft containers because it's a pain in the ass otherwise
-# USAGE: ./newContainer <Minecraft port> <containername> <username> <memory> <bungeeName> <PAPER/VANILLA> <paperbuild> <minecraftVersion>
+# USAGE: ./newContainer <username>
 #first, we need a new network since Waterfall will require static IPs:
 sudo podman network create --subnet=172.18.0.0/16 MINECRAFT_NET
 # make a user for SFTP to the Waterfall configs:

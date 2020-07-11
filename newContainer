@@ -15,7 +15,7 @@ USR_UID=$(id -u $1) # assign id of `$1` group to MEDIA_GID
 USR_GID=$(id -g $1) # change ownership in podman namespace
 #sudo podman unshare chown $MEDIA_UID:$MEDIA_GID /home/$3/data
 #make and run the container:
-sudo podman run -d -it -v /home/$1/data:/data:z -e VERSION=$5 -e TYPE=$3 -e paperbuild=$4 -e FORCE_REDOWNLOAD=true -e MAX_RAM=$2G -e UID=$USR_UID -e GID=$USR_GID --net MINECRAFT_NET --ip $6 -e EULA=true -e USE_AIKAR_FLAGS=true -e SERVER_NAME=$1 --name $1 -m=$2g --cpus=1 itzg/minecraft-server
+sudo podman run -d -it -v /home/$1/data:/data:z -e VERSION=$5 -e TYPE=$3 -e paperbuild=$4 -e FORCE_REDOWNLOAD=true -e MEMORY=$2G -e UID=$USR_UID -e GID=$USR_GID --net MINECRAFT_NET --ip $6 -e EULA=true -e USE_AIKAR_FLAGS=true -e SERVER_NAME=$1 --name $1 -m=$2g --cpus=1 itzg/minecraft-server
 #now run it
 sudo podman start $1
 #output
