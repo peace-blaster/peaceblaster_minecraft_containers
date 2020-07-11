@@ -3,7 +3,7 @@
 # this is just alias-able shorthand for making these Minecraft containers because it's a pain in the ass otherwise
 # USAGE: ./newContainer <username>
 #first, we need a new network since Waterfall will require static IPs:
-sudo podman network create --subnet=172.18.0.0/16 MINECRAFT_NET
+#sudo podman network create --subnet=172.18.0.0/16 MINECRAFT_NET
 # make a user for SFTP to the Waterfall configs:
 sudo useradd -U $1
 echo "Added user $1"
@@ -18,7 +18,7 @@ sudo passwd $1
 USR_UID=$(id -u $1) # assign id of `$3` group to MEDIA_GID
 USR_GID=$(id -g $1) # change ownership in podman namespace
 #make and run the container:
-sudo podman run -d -it -u $USR_UID -v /home/$1/data:/server:z -p 25565:25577 -e TYPE=WATERFALL --name WATERFALL --net MINECRAFT_NET --ip 172.18.0.2 itzg/bungeecord
+sudo podman run -d -it -u $USR_UID -v /home/$1/data:/server:z -p 25565:25577 -e TYPE=WATERFALL --name WATERFALL itzg/bungeecord
 #now run it
 sudo podman start WATERFALL
 #output relevant stuff:
